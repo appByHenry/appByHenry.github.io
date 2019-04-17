@@ -1,0 +1,204 @@
+/* fallback */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v43/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+body,
+label {
+
+}
+.hamburger-menu{
+    font-size: 2.4rem !important;
+}
+
+.top-nav {
+    padding: 0px 10px;
+}
+
+ul#side-dropdown {
+    top: 65px !important;
+}
+
+ul#main-menu {
+    left: 0px !important;
+    top: 65px !important;
+    height: 95vh !important;
+    width: 200px !important;
+}
+
+div#body-div {
+    /*height: 86vh;*/
+    padding: 20px 30px;
+    /*margin-bottom: 75px;*/
+    /*position: relative;*/
+    /*z-index: -1;*/
+    /*top: 375px;*/
+}
+
+
+
+.inline-class{
+    display: inline-block;
+    width: 15%;
+    margin: 0px 10px;
+}
+
+/************
+Below is old style
+ */
+
+.main-div{
+    margin: 0px 7px;
+    height: 475px;
+
+}
+#footer-style{
+    padding: 20px 0px;
+    bottom: 0;
+    /*position: fixed;*/
+    width: 100%;
+}
+.footer-style{
+    text-align: center;
+}
+
+span.fieldValue {
+
+    padding-bottom: 5px;
+    margin-left: 5px;
+}
+.each-ss{
+    margin-bottom: 10px;
+
+}
+.propery.snapshot {
+    /* margin-bottom: 200px; */
+    /*position: fixed;*/
+    width: 100%;
+    padding: 30px;
+}
+.ss-style{
+    border: 1px solid;
+    background-color: #423f3f;
+    color: white;
+    padding: 20px;
+}
+.each-ss{
+    /*display: inline-block;*/
+    /*margin: 0px 5px;*/
+    vertical-align: top;
+}
+.side-by-side{
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+    /*border: 1px solid whitesmoke;*/
+    padding: 5px 10px;
+}
+.deal-highlight{
+    width: 49%;
+    display: inline-block;
+    /*border: 1px solid whitesmoke;*/
+    padding: 5px 10px;
+}
+.deal-burr{
+    border-left: 1px solid whitesmoke;
+    border-right: 1px solid whitesmoke;
+}
+.deals-header{
+    margin: 10px 0px;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 18px;
+}
+.right-side, .left-side {
+    display: inline-block;
+}
+.right-side {
+    text-align: end;
+    width: 49%;
+    vertical-align: top;
+    border-bottom: 1px solid #b8c1ba;
+}
+.left-side {
+    text-align: left;
+    width: 49%;
+    vertical-align: top;
+}
+.da-class{
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+}
+.da-part2{
+    margin-left: 10px;
+}
+.equal-sides{
+    display: inline-block;
+    width: 25%;
+}
+.equal-sides-header{
+    display: inline-block;
+    width: 15%;
+    font-size: 1.2rem;
+}
+.main-top-header{
+    text-align: center;
+}
+.top-header-style{
+    font-size: 1.3rem;
+    border: 1px solid;
+    padding: 5px 10px;
+}
+.top-btn{
+    width: 50px;
+    height: 50px;
+    padding-left: 7.5px;
+    padding-top: 4px;
+    font-size: 1.3rem;
+    bottom: -150px !important;
+    right: 15px !important;
+}
+@media only screen and (min-width: 993px) {
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+}
+
+@media only screen and (min-width: 1280px) {
+
+}
+
+@media only screen and (max-width: 1023px) {
+
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+
+}

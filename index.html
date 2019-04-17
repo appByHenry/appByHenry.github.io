@@ -1,1 +1,498 @@
-Hello World
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing REI app.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/gif/png" href="">
+    <title>REI App</title>
+
+    <!-- Page styles -->
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZij7taVnQ-On-tKMJEP3RW831KWU_10s&libraries=places"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <!--<link rel="stylesheet" href="../static/css/css-lib/materialize.min.css">-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tiaanduplessis/wenk/master/dist/wenk.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <style></style>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery.geocomplete.min.js"></script>
+    <!--<script src="../static/js/js-lib/materialize.min.js"></script>-->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+
+
+    <script src="reiapp.js"></script>
+</head>
+
+<body>
+<div id="navbar-div" >
+    <div class="navbar-fixed">
+
+        <nav class="blue-grey darken-4">
+
+            <div class="nav-wrapper top-nav ">
+                <a href="#" data-activates="mobile-demo-sidenav"  data-target='main-menu' class="brand-logo dropdown-trigger">Logo</a>
+                <ul id='main-menu' class='dropdown-content blue-grey-text text-darken-4'>
+                    <li><a href="#!" class="blue-grey-text text-darken-4">Link 1</a></li>
+                    <li><a href="#!" class="blue-grey-text text-darken-4">Link 2</a></li>
+                    <li><a href="#!" class="blue-grey-text text-darken-4">Link 3</a></li>
+                    <li><a href="#!" class="blue-grey-text text-darken-4">Link 4</a></li>
+                </ul>
+                <!--<ul class="right hide-on-med-and-down">-->
+                    <!--<li>-->
+                        <!--<a href="#" class="dropdown-trigger" data-target='side-dropdown'><i class="dropdown-trigger material-icons"></i></a>-->
+                        <!--<ul id='side-dropdown' class='dropdown-content blue-grey-text text-darken-4'>-->
+                            <!--<li><a href="#!" class="blue-grey-text text-darken-4">Link 1</a></li>-->
+                            <!--<li><a href="#!" class="blue-grey-text text-darken-4">Link 2</a></li>-->
+                            <!--<li><a href="#!" class="blue-grey-text text-darken-4">Link 3</a></li>-->
+                            <!--<li><a href="#!" class="blue-grey-text text-darken-4">Link 4</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <ul class="right">
+
+                    <button class="btn waves-effect waves-light" id="save-button" type="submit" name="action">Save Property</button>
+                    <button class="btn waves-effect waves-light" id="snapshot-button" type="submit" name="action">Property Snapshot</button>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <!-- ZWSID : X1-ZWz1h0eeic9823_18y6r
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
+
+    </div>
+</div>
+
+
+<div id="body-div">
+    <!--<div>-->
+        <!--<input placeholder="Placeholder" id="p_addres" type="text" class="validate">-->
+        <!--<label for="p_addres">Address</label>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--<div><h4>Choose property to load data</h4></div>-->
+        <!--<div class="collection">-->
+            <!--<a href="#!" class="collection-item">Property 1</a>-->
+            <!--<a href="#!" class="collection-item">Property 1</a>-->
+            <!--<a href="#!" class="collection-item">Property 1</a>-->
+            <!--<a href="#!" class="collection-item">Property 1</a>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">assignment</i>Property Details</div>
+            <div class="collapsible-body" id="propertydemographics">
+                <div class="input-field inline-class">
+                    <input id="p_add" type="text" class="validate ip-size">
+                    <label for="p_add">Address</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="p_state" type="text" class="validate ip-size">
+                    <label for="p_state">State</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="p_city" type="text" class="validate ip-size">
+                    <label for="p_city">City</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="p_zip" type="text" class="validate ip-size">
+                    <label for="p_zip">ZIP</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="p_bed" type="text" class="validate ip-size">
+                    <label for="p_bed">Bedroom</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="p_bath" type="text" class="validate ip-size">
+                    <label for="p_bath">Bathroom</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="p_size" type="text" class="validate ip-size">
+                    <label for="p_size">Aera (SqFt)</label>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">attach_money</i>Property Value & Pricing</div>
+            <div class="collapsible-body" id="propertynumbers">
+                <div class="input-field inline-class">
+                    <input id="listed_price" type="text" class="validate ip-size numbervalidation">
+                    <label for="listed_price">Listed Price</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="purchase_price" type="text" class="validate ip-size numbervalidation">
+                    <label for="purchase_price">Purchased Price</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="repair_price" type="text" class="validate ip-size numbervalidation">
+                    <label for="repair_price">Rehab Cost</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="after_repair_price" type="text" class="validate ip-size numbervalidation">
+                    <label for="after_repair_price">After Repair Value (ARV)</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="hold_period" type="text" class="validate ip-size numbervalidation">
+                    <label for="hold_period">Holding Period (Months)</label>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">account_balance</i>Financing Cost</div>
+            <div class="collapsible-body" id="financingnumbers">
+                <div class="input-field inline-class">
+                    <input id="first_mortgage" type="text" class="validate numbervalidation">
+                    <label for="first_mortgage">lien amount</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="fm_percent_amnt" type="text" class="validate numbervalidation">
+                    <label for="fm_percent_amnt">lien amount percentage</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="fm_points" type="text" class="validate numbervalidation">
+                    <label for="fm_points">Points</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="fm_intr" type="text" class="validate">
+                    <label for="fm_intr">Interest Rate</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="fm_monthly_inter" type="text" class="validate numbervalidation">
+                    <label for="fm_monthly_inter">Monthly Payment</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input placeholder="Finance Cost" id="finance_cost" type="text" class="validate numbervalidation">
+                    <label for="finance_cost">Total Cost</label>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">beach_access</i>Holding Cost</div>
+            <div class="collapsible-body" id="holdincostnumbers">
+                <div class="input-field inline-class">
+                    <input id="property_tax" type="text" class="validate numbervalidation">
+                    <label for="property_tax">Property Taxes</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="piti_price" type="text" class="validate">
+                    <label for="piti_price">Principal & Interest</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="hoa_fees" type="text" class="validate numbervalidation">
+                    <label for="hoa_fees">HOA/Condo Fees</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="insurance_cost" type="text" class="validate numbervalidation">
+                    <label for="insurance_cost">Insurance Cost</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="utility_cost" type="text" class="validate numbervalidation">
+                    <label for="utility_cost">Utility Cost</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="gas_cost" type="text" class="validate numbervalidation">
+                    <label for="gas_cost">Gas</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="water_cost" type="text" class="validate numbervalidation">
+                    <label for="water_cost">Water</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="electricity_cost" type="text" class="validate numbervalidation">
+                    <label for="electricity_cost">Electricity</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="misc_cost" type="text" class="validate numbervalidation">
+                    <label for="misc_cost">Misc Cost</label>
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">shopping_cart</i>Buying Cost</div>
+            <div class="collapsible-body" id="buyingcostnumbers">
+                <div class="input-field inline-class">
+                    <input id="escrew_price" type="text" class="validate numbervalidation">
+                    <label for="escrew_price">Escrew/Atteroney/Misc</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="title_ins_price" type="text" class="validate numbervalidation">
+                    <label for="title_ins_price">Title Insurance</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="selling_record_price" type="text" class="validate numbervalidation">
+                    <label for="selling_record_price">Buying Record Fees</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="warrenty_price" type="text" class="validate numbervalidation">
+                    <label for="warrenty_price">Home Warrenty</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="realter_price" type="text" class="validate numbervalidation">
+                    <label for="realter_price">Realtor Fees</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="misc_price" type="text" class="validate numbervalidation">
+                    <label for="misc_price">Misc Cost</label>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">monetization_on</i>Selling Cost</div>
+            <div class="collapsible-body" id="sellingcostnumbers">
+                <div class="input-field inline-class">
+                    <input id="s_escrew_price" type="text" class="validate numbervalidation">
+                    <label for="s_escrew_price">Escrew/Atteroney/Misc</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="s_title_ins_price" type="text" class="validate numbervalidation">
+                    <label for="s_title_ins_price">Title Insurance</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="s_selling_record_price" type="text" class="validate numbervalidation">
+                    <label for="s_selling_record_price">Selling Record Fees</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="s_warrenty_price" type="text" class="validate numbervalidation">
+                    <label for="s_warrenty_price">Home Warrenty</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="s_realter_price" type="text" class="validate numbervalidation">
+                    <label for="s_realter_price">Realtor Fees</label>
+                </div>
+                <div class="input-field inline-class">
+                    <input id="s_misc_price" type="text" class="validate numbervalidation">
+                    <label for="s_misc_price">Misc Cost</label>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">loop</i>Burrr and/or Rental</div>
+            <div class="collapsible-body" id="burrrnumbers">
+                <div>
+                    <div class="input-field inline-class">
+                        <input id="downpayment" type="text" class="validate numbervalidation">
+                        <label for="downpayment">Down Payment</label>
+                    </div>
+                    <!--<div class="input-field inline-class">-->
+                        <!--<input id="interestrate" type="text" class="validate numbervalidation">-->
+                        <!--<label for="interestrate">Interest Rate</label>-->
+                    <!--</div>-->
+                    <div class="input-field inline-class">
+                        <input id="purchaseprice" type="text" class="validate numbervalidation">
+                        <label for="purchaseprice">Purchase Price</label>
+                    </div>
+                    <div class="input-field inline-class">
+                        <input id="rehabcost" type="text" class="validate numbervalidation">
+                        <label for="rehabcost">Rehab Cost</label>
+                    </div>
+                    <!--<div class="input-field inline-class">-->
+                        <!--<input id="estimated_months" type="text" class="validate numbervalidation">-->
+                        <!--<label for="estimated_months">Estimated Rehab Months</label>-->
+                    <!--</div>-->
+                    <div class="input-field inline-class">
+                        <input id="arv_val" type="text" class="validate numbervalidation">
+                        <label for="arv_val">ARV (After Repair Value)</label>
+                    </div>
+                    <!--<div class="input-field inline-class">-->
+                        <!--<input id="total_profit" type="text" class="validate numbervalidation">-->
+                        <!--<label for="total_profit">Total Appraised Val</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field inline-class">-->
+                        <!--<input id="new-equity" type="text" class="validate numbervalidation">-->
+                        <!--<label for="new-equity">New Equity</label>-->
+                    <!--</div>-->
+                </div>
+                <div>
+                    <div class="input-field inline-class">
+                        <input id="rent" type="text" class="validate numbervalidation">
+                        <label for="rent">Rent Monthly</label>
+                    </div>
+                    <!--<div class="input-field inline-class">-->
+                        <!--<input id="morgatge" type="text" class="validate numbervalidation">-->
+                        <!--<label for="morgatge">Interest Rate</label>-->
+                    <!--</div>-->
+                    <div class="input-field inline-class">
+                        <input id="rpiti" type="text" class="validate">
+                        <label for="rpiti">Princitpal & Intr</label>
+                    </div>
+                    <div class="input-field inline-class">
+                        <input id="ptax" type="text" class="validate">
+                        <label for="ptax">Tax</label>
+                    </div>
+                    <div class="input-field inline-class">
+                        <input id="hinsurance" type="text" class="validate numbervalidation">
+                        <label for="hinsurance">Insurance</label>
+                    </div>
+                    <div class="input-field inline-class">
+                        <input id="rhoa" type="text" class="validate numbervalidation">
+                        <label for="rhoa">HOA</label>
+                    </div>
+                    <div class="input-field inline-class">
+                        <input id="mhinsurance" type="text" class="validate numbervalidation">
+                        <label for="mhinsurance">Mortagage Insurance</label>
+                    </div>
+                    <div class="input-field inline-class">
+                        <input id="mcost" type="text" class="validate">
+                        <label for="mcost">Mortagage Intr</label>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">loop</i>Upload Analysis</div>
+            <div class="collapsible-body" id="analysis-images">
+                <div>
+                    <form action="" id="formContent" method="post" enctype="multipart/form-data" >
+                        <input  type="file" name="file[]"  required id="upload" multiple>
+                        <button class="submit" >Upload Image</button>
+                    </form>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+</div>
+<div class="propery snapshot">
+    <a class="btn-floating halfway-fab waves-effect waves-light red top-btn">Top</a>
+    <div class="ss-style">
+        <div class="main-top-header">
+            <div class="top-header-style">Property Snapshot</div>
+        </div>
+        <div>
+            <div class="deal-forcast">
+                <div class="equal-sides-header">Deal Forcast</div>
+                <div class="equal-sides">
+                    <div class="input-field ">
+                        <input id="d_forcast" type="text" class="validate ip-size" >
+                        <label for="d_forcast" class="tooltip" title="This is my span's tooltip message!" data-wenk="I'm to the right!" data-wenk-pos="top">Yearly appreciation(%)</label>
+                    </div>
+                </div>
+                <div class="equal-sides">
+                    <div class="input-field ">
+                        <input id="d_forcast_years" type="text" class="validate ip-size">
+                        <label for="d_forcast_years">No of years</label>
+                    </div>
+                </div>
+                <div class="equal-sides">
+                    <div class="input-field ">
+                        <input id="d_forcast_profit" type="text" class="validate ip-size">
+                        <label for="d_forcast_profit">Profit</label>
+                    </div>
+                </div>
+            </div>
+            <div class="deal-highlight ">
+                <div class="deals-header"> Purchase Deal Analysis & Analysis</div>
+                <div class="da-part1 da-class">
+                    <div class="each-ss" data-wenk="Purchase Price + Rehab cost + appraisal" data-wenk-pos="top">
+                        <label>ARV</label>
+                        <input placeholder="" type="text" class="validate numbervalidation after_repair_price" style="height: 1.7rem;">
+                    </div>
+                    <div class="each-ss">
+                        <label>Purchase Price</label>
+                        <input placeholder="" type="text" class="validate numbervalidation purchase_price" style="height: 1.7rem;">
+                    </div>
+                    <div class="each-ss" data-wenk="(Months x Monthly Holding Cost) + Rehab Cost" data-wenk-pos="top">
+                        <label>Total Rehab Cost</label>
+                        <input placeholder="" type="text" class="validate numbervalidation repair_price" style="height: 1.7rem;">
+                    </div>
+                    <div class="each-ss" data-wenk="Monthly Interest x Holding months" data-wenk-pos="top">
+                        <label>Total Financing Cost</label>
+                        <input placeholder="" type="text" class="validate numbervalidation finance_cost" style="height: 1.7rem;">
+                    </div>
+                </div>
+                <div class="da-part2 da-class">
+                    <div class="each-ss" data-wenk="Monthly Cost x Holding months" data-wenk-pos="top">
+                        <label>Holding cost :</label>
+                        <input placeholder="" type="text" class="validate numbervalidation t_holding_cost" style="height: 1.7rem;">
+                    </div>
+                    <div class="each-ss" data-wenk="Include All Buying fees" data-wenk-pos="top">
+                        <label>Buying cost :</label>
+                        <input placeholder="" type="text" class="validate numbervalidation t_buying_cost" style="height: 1.7rem;">
+                    </div>
+                    <div class="each-ss" data-wenk="Includes All Selling fees" data-wenk-pos="top">
+                        <label>Selling cost :</label>
+                        <input placeholder="" type="text" class="validate numbervalidation t_selling_cost" style="height: 1.7rem;">
+                    </div>
+                </div>
+            </div>
+            <div class="deal-burr side-by-side">
+                <div class="deals-header">BRRRR & Rental Analysis</div>
+                <div class="each-ss" data-wenk="ARV - (Purchase Price + Rehab Cost + Downpayment)" data-wenk-pos="top">
+                    <label>Equity :</label>
+                    <input placeholder="" type="text" class="validate numbervalidation eqity" style="height: 1.7rem;">
+                </div>
+                <div class="each-ss" data-wenk="Monthly Rent - (PITI + Monthly Cost)" data-wenk-pos="top">
+                    <label>Monthly Cash flow :</label>
+                    <input placeholder="" type="text" class="validate numbervalidation cashflow_m" style="height: 1.7rem;">
+                </div>
+                <div class="each-ss" data-wenk="Yearly Rent - (PITI + Yearly Cost)" data-wenk-pos="top">
+                    <label>Yearly Cash flow :</label>
+                    <input placeholder="" type="text" class="validate numbervalidation cashflow_y" style="height: 1.7rem;">
+                </div>
+                <div class="each-ss" data-wenk="1% Rent of total purchase/rehab cost" data-wenk-pos="top">
+                    <label>1% Rule :</label>
+                    <input placeholder="" type="text" class="validate numbervalidation 1_rule" style="height: 1.7rem;">
+                </div>
+            </div>
+            <div class="deal-rental side-by-side">
+                <div class="deals-header">REI Metrics</div>
+                <div class="each-ss" data-wenk="Monthly Rent - (PITI + Monthly Cost)" data-wenk-pos="top">
+                    <label>Cap Rate :</label>
+                    <input placeholder="" type="text" class="validate numbervalidation c_rate" style="height: 1.7rem;">
+                </div>
+                <div class="each-ss" data-wenk="Yearly Rent - (PITI + Yearly Cost)" data-wenk-pos="top">
+                    <label>COC-Return:</label>
+                    <input placeholder="" type="text" class="validate numbervalidation coc" style="height: 1.7rem;">
+                </div>
+                <div class="each-ss" data-wenk="Yearly Rent - (PITI + Yearly Cost)" data-wenk-pos="top">
+                    <label>ROI:</label>
+                    <input placeholder="" type="text" class="validate numbervalidation roi" style="height: 1.7rem;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<footer class="blue-grey darken-4" id="footer-style">
+    <div class="footer-copyright">
+        <div class="footer-style container grey-text text-lighten-4">
+            © 2014 Copyright Text
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
